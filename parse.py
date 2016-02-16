@@ -1,6 +1,5 @@
 import adnymicsLogParser.Parser
 import sys, getopt
-import os
 
 targetfile = ""
 targetpath = ""
