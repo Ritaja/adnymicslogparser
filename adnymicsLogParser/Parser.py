@@ -23,19 +23,22 @@ def worker_daemon(path=os.path.join(os.path.dirname(__file__), "tests/"), filena
     pass
 
 
-def worker_simple(path=os.path.join(os.path.dirname(__file__), "tests/"), filename="test.log"):
+def worker_simple(targetpath, targetfile, dbname, user, password, host, port):
     '''
     Simple worker which opens a psql connection, creates required tables.
 
     '''
+    if targetpath == "":
+        targetpath = os.path.join(os.path.dirname(__file__), "tests/")
+
     logger.info("starting simple worker for log parsing")
-    psql = PSQLConnection()
+    psql = PSQLConnection(database=dbname, user=user, password=password, host=host, port=port)
     connection = psql.open_connection()
     check_and_create_tables(psql, connection)
     # find all files in the directory
-    for file in os.listdir(path):
-        if file.startswith(filename.split(".")[0]):
-            parse_and_write(path=path, filename=file)
+    for file in os.listdir(targetpath):
+        if file.startswith(targetfile.split(".")[0]):
+            parse_and_write(path=targetpath, filename=file)
     # work done close the connection
     psql.close_connection()
 
@@ -51,8 +54,8 @@ def check_and_create_tables(db, connection):
     global orders_products
     # required tables does not exist on the DB, create
     if not db.check_table_exists("orders") and not db.check_table_exists("orders_products"):
-        table_orders = Model().load_data("data/table_orders")
-        table_products = Model().load_data("data/table_products")
+        table_orders = Model().load_data("adnymicsLogParser/data/table_orders")
+        table_products = Model().load_data("adnymicsLogParser/data/table_products")
         table = Table(connection)
         orders = table.create_table(table_orders)
         orders_products = table.create_table(table_products)
@@ -129,16 +132,9 @@ def write_db(log_match):
     orders_products.insert_datapoint(table_products_data)
 
 
-def start():
+def start(targetpath, targetfile, dbname, user, password, host, port):
     '''
     The main controller for the parser script.
     :return:
     '''
-    worker_simple()
-
-
-if __name__ == "__main__":
-    '''
-    The default main for the parser, not set properly
-    '''
-    worker_simple()
+    worker_simple(targetpath, targetfile, dbname, user, password, host, port)
