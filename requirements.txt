@@ -1,0 +1,2 @@
+adnymicsLogParser
+psycopg2==2.6.1

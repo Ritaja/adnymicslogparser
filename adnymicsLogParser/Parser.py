@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+import sys
+
+sys.path.append("..")
 import logging
 import os
 
@@ -34,7 +38,6 @@ def worker_simple(path=os.path.join(os.path.dirname(__file__), "tests/"), filena
     # find all files in the directory
     for file in os.listdir(path):
         if file.startswith(filename.split(".")[0]):
-            print(file)
             parse_and_write(path=path, filename=file)
     # work done close the connection
     psql.close_connection()
@@ -129,9 +132,16 @@ def write_db(log_match):
     orders_products.insert_datapoint(table_products_data)
 
 
-if __name__ == "__main__":
+def start():
     '''
     The main controller for the parser script.
-    :param
+    :return:
+    '''
+    worker_simple()
+
+
+if __name__ == "__main__":
+    '''
+    The default main for the parser, not set properly
     '''
     worker_simple()
