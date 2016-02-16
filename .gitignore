@@ -1,3 +1,6 @@
+/build
+/dist
+/log_parser.egg-info
 parser.log
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template

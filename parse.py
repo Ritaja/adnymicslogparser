@@ -56,7 +56,7 @@ for opt, arg in opts:
     elif opt in ("-i", "--port"):
         port = arg
     elif opt in ("--cheatmode"):
-        targetfile = "test.log"
+        targetfile = "sample.log"
         targetpath = ""
         dbname = "testdb"
         user = "ritajasengupta"

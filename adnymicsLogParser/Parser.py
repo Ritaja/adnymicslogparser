@@ -16,7 +16,7 @@ setup_logging()
 logger = logging.getLogger(__name__)
 
 
-def worker_daemon(path=os.path.join(os.path.dirname(__file__), "tests/"), filename="test.log"):
+def worker_daemon(path=os.path.join(os.path.dirname(__file__), "tests/"), filename="sample.log"):
     '''
 
     '''
@@ -36,11 +36,29 @@ def worker_simple(targetpath, targetfile, dbname, user, password, host, port):
     connection = psql.open_connection()
     check_and_create_tables(psql, connection)
     # find all files in the directory
+    check_path_and_file(targetpath, targetfile)
     for file in os.listdir(targetpath):
         if file.startswith(targetfile.split(".")[0]):
             parse_and_write(path=targetpath, filename=file)
     # work done close the connection
     psql.close_connection()
+
+
+def check_path_and_file(targetpath, targetfile):
+    '''
+    helper function to check valid path and valid file
+    :param targetpath: the target path
+    :param targetfile: the target filename
+    :raises: EnvironmentError, on being provided invalid path/filename
+    '''
+
+    if not os.path.isdir(targetpath):
+        logger.error("the provided target path is not a directory. PATH: %s", targetpath)
+        raise EnvironmentError("the provided target path is not a directory. Check logs for details")
+
+    if not os.path.isfile(targetpath + targetfile):
+        logger.error("the provided target file is not a file. FILE: %s", targetfile)
+        raise EnvironmentError("the provided target path is not a file. Check logs for details")
 
 
 def check_and_create_tables(db, connection):
