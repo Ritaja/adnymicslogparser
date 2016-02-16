@@ -1,0 +1,15 @@
+{
+  "name": "orders_products",
+  "column": [
+    {
+      "name": "order_id",
+      "type": "integer",
+      "constraint": "NOT NULL REFERENCES orders(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "product_item_number",
+      "type": "character varying(64)",
+      "constraint": "NOT NULL, PRIMARY KEY (order_id, product_item_number)"
+    }
+  ]
+}

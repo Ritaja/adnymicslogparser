@@ -1,0 +1,20 @@
+{
+  "name": "orders",
+  "column": [
+    {
+      "name": "id",
+      "type": "serial",
+      "constraint": "UNIQUE"
+    },
+    {
+      "name": "identifier",
+      "type": "character varying(320)",
+      "constraint": "NOT NULL"
+    },
+    {
+      "name": "customer_id",
+      "type": "integer",
+      "constraint": "NOT NULL"
+    }
+  ]
+}
