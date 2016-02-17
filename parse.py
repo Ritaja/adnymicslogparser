@@ -28,7 +28,7 @@ if len(sys.argv) < 2:
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hf:p:d:u:x:h:i:",
-                               ["file=", "path=", "database", "username", "password", "host", "port", "cheatmode"])
+                               ["file=", "path=", "database=", "username=", "password=", "host=", "port="])
 except getopt.GetoptError:
     graphics()
     print 'USAGE: Parse.py -f <M:logFileName> -p <O:path/to/file> -d <M:dbname> -u <M:username> -x <O:password> -h <M:host> -i<M:port>'
@@ -39,12 +39,14 @@ for opt, arg in opts:
     if opt == '-h':
         graphics()
         print 'USAGE: Parse.py -f <M:logFileName> -p <M:path/to/file> -d <M:dbname> -u <M:username> -x <O:password> -h <M:host> -i<M:port>'
+        print 'USAGE: Parse.py --file= <M:logFileName> --path= <M:path/to/file> --database= <M:dbname> --username= <M:username> --password= <O:password> --host= <M:host> --port= <M:port>'
         print 'mandatory arguments are marked as M: and optional with O:'
         sys.exit()
     elif opt in ("-f", "--file"):
         targetfile = arg
     elif opt in ("-p", "--path"):
         targetpath = arg
+        targetpath += '/'
     elif opt in ("-d", "--database"):
         dbname = arg
     elif opt in ("-u", "--username"):
@@ -55,11 +57,9 @@ for opt, arg in opts:
         host = arg
     elif opt in ("-i", "--port"):
         port = arg
-    elif opt in ("--cheatmode"):
-        targetfile = "sample.log"
-        targetpath = ""
-        dbname = "testdb"
-        user = "ritajasengupta"
+    else:
+        graphics()
+        print "Invalid argument. Please run with -h for help"
 
 if dbname is None or host is None or port is None or user is None or targetfile is None or targetpath is None:
     graphics()
@@ -72,5 +72,6 @@ if dbname is None or host is None or port is None or user is None or targetfile 
 graphics()
 if password is None:
     print "PASSWORD for db is not set, proceeding without password"
-adnymicsLogParser.Parser.start(targetpath, targetfile, dbname, user, password, host, port)
+adnymicsLogParser.Parser.start(targetpath=targetpath, targetfile=targetfile, dbname=dbname, user=user,
+                               password=password, host=host, port=port)
 print "process finished. Check logs for details."

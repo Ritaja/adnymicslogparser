@@ -9,7 +9,7 @@ user = "ritajasengupta"
 password = "ritajasengupta"
 host = "127.0.0.1"
 port = "5432"
-path = "/Users/ritajasengupta/git/adnymicsTask/adnymicsLogParser/tests/"
+path = "/Users/ritajasengupta/git/adnymicsTask/adnymicsLogParser/tests"
 filename = "sample.log"
 cursor = None
 

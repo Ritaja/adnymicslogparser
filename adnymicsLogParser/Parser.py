@@ -16,57 +16,49 @@ setup_logging()
 logger = logging.getLogger(__name__)
 
 
-def worker_daemon(path=os.path.join(os.path.dirname(__file__), "tests/"), filename="sample.log"):
-    '''
-
-    '''
-    pass
-
-
 def worker_simple(targetpath, targetfile, dbname, user, password, host, port):
     '''
     Simple worker which opens a psql connection, creates required tables.
 
     '''
-    if targetpath == "":
-        targetpath = os.path.join(os.path.dirname(__file__), "tests/")
-
     logger.info("starting simple worker for log parsing")
     psql = PSQLConnection(database=dbname, user=user, password=password, host=host, port=port)
     connection = psql.open_connection()
     check_and_create_tables(psql, connection)
     # find all files in the directory
-    check_path_and_file(targetpath, targetfile)
+    check_path_and_file(targetpath)
+    # as we only focus on log files
     for file in os.listdir(targetpath):
-        if file.startswith(targetfile.split(".")[0]):
+        if file.startswith(targetfile.split(".")[0]) and file.endswith(".log"):
             parse_and_write(path=targetpath, filename=file)
     # work done close the connection
     psql.close_connection()
 
 
-def check_path_and_file(targetpath, targetfile):
+def check_path_and_file(targetpath):
     '''
+
     helper function to check valid path and valid file
+
     :param targetpath: the target path
     :param targetfile: the target filename
     :raises: EnvironmentError, on being provided invalid path/filename
+
     '''
 
     if not os.path.isdir(targetpath):
         logger.error("the provided target path is not a directory. PATH: %s", targetpath)
         raise EnvironmentError("the provided target path is not a directory. Check logs for details")
 
-    if not os.path.isfile(targetpath + targetfile):
-        logger.error("the provided target file is not a file. FILE: %s", targetfile)
-        raise EnvironmentError("the provided target path is not a file. Check logs for details")
-
 
 def check_and_create_tables(db, connection):
     '''
+
     Checks if the required tables are not present in the db, then creates them.
 
     :param db: the proper db object to use
     :param connection: the db connection object to communicate to the db with
+
     '''
     global orders
     global orders_products
@@ -87,11 +79,13 @@ def check_and_create_tables(db, connection):
 
 def parse_and_write(path, filename, batchsize=5):
     '''
+
     Parses the given log file and writes the missing datapoints in the DB.
 
     :param filename: the log file to parse
     :param batchsize: the batchsize of reading/writing ops. default 5
     :raises: IOError on failing to open/locate provided log file
+
     '''
     i = 0
     log_match = []
@@ -133,9 +127,12 @@ def parse_and_write(path, filename, batchsize=5):
 
 def write_db(log_match):
     '''
+
     Inserts the required datapoints in the DB.
+
     :param log_match: the datastructure containing data points to write to DB.
     :raises: AttributeError when the number of tables created/configured is less than required for operation
+
     '''
     # the no of tables initiated is less than required, something wrong, abort
     if orders_products is None or orders is None:
@@ -152,7 +149,10 @@ def write_db(log_match):
 
 def start(targetpath, targetfile, dbname, user, password, host, port):
     '''
+
     The main controller for the parser script.
+
     :return:
+
     '''
     worker_simple(targetpath, targetfile, dbname, user, password, host, port)

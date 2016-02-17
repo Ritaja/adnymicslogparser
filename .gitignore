@@ -3,6 +3,7 @@
 /log_parser.egg-info
 /docs/_static
 /docs/_templates
+/.tox
 parser.log
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
