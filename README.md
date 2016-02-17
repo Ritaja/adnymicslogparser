@@ -60,16 +60,16 @@ mandatory arguments are marked as M: and optional with O:
 
 **Detail (ed) flags:**
 
-| Flag          | Explanation                                                                                                                                                                                                                |   |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| -h            | Help                                                                                                                                                                                                                       |   |
-| -f / --file   | Filename, the name of the log to parse. The program will look for  all log files in the directory that starts with this name and parse them. Ex: "sample.log" will make the program parse "sample0.log", "sample1.log" etc |   |
-| -p/--path     | The target path or the path where the log files should be looked up.  Ex: "path/to/file"                                                                                                                                   |   |
-| -d/--database | The name of the psql database to use                                                                                                                                                                                       |   |
-| -u/--username | The username for the database                                                                                                                                                                                              |   |
-| -x/--password | The password required to connect to DB. Can be skipped, if the  user has password-less access to DB                                                                                                                        |   |
-| -h/--host     | The host name for the DB. Ex: "127.0.0.1"                                                                                                                                                                                  |   |
-| -i/--port     | The port where the psql is running
+| Flag          | Explanation                                                                                                                                                                                                                |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -h            | Help                                                                                                                                                                                                                       |
+| -f / --file   | Filename, the name of the log to parse. The program will look for  all log files in the directory that starts with this name and parse them. Ex: "sample.log" will make the program parse "sample0.log", "sample1.log" etc |
+| -p/--path     | The target path or the path where the log files should be looked up.  Ex: "path/to/file"                                                                                                                                   |
+| -d/--database | The name of the psql database to use                                                                                                                                                                                       |
+| -u/--username | The username for the database                                                                                                                                                                                              |
+| -x/--password | The password required to connect to DB. Can be skipped, if the  user has password-less access to DB                                                                                                                        |
+| -h/--host     | The host name for the DB. Ex: "127.0.0.1"                                                                                                                                                                                  |
+| -i/--port     | The port where the psql is running  
 
 It is also possible to obtain help from the program with the `-h` flag:
 
