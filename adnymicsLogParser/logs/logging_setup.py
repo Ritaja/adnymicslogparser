@@ -5,10 +5,14 @@ import logging.config
 
 def setup_logging(default_path='logging.json', default_level=logging.INFO, env_key='LOG_CFG'):
     '''
+
     A simple logging config to be used globally (simple dictionary based config)
+    config is read from logging.json
+
     :param default_path: path to logging config file JSON
     :param default_level: the default log level (def: INFO)
     :param env_key: the environment key
+
     '''
 
     path = os.path.join(os.path.dirname(__file__), default_path)
