@@ -69,7 +69,7 @@ mandatory arguments are marked as M: and optional with O:
 | -u/--username | The username for the database                                                                                                                                                                                              |
 | -x/--password | The password required to connect to DB. Can be skipped, if the  user has password-less access to DB                                                                                                                        |
 | -h/--host     | The host name for the DB. Ex: "127.0.0.1"                                                                                                                                                                                  |
-| -i/--port     | The port where the psql is running  
+| -i/--port     | The port where the psql is running
 
 It is also possible to obtain help from the program with the `-h` flag:
 
