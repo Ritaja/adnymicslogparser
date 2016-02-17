@@ -81,6 +81,12 @@ $ python Parse.py -h
 
 If the password is not provided, the program assumes that the user has passwordless access to the database.
 
+### Logs
+
+The logs are configured only for the file handler. The log file created is named parser.log, for convenience it is placed under `adnymicsTask` folder.
+
+The same file appends all error, info and debug streams. The handler is rotating file handler, so when log becomes full, it will push old logs to a numbered log file (E.x: parser0.log)
+
 
 [psycopg2]:https://pypi.python.org/pypi/psycopg2
 [pytest]:http://pytest.org/latest/

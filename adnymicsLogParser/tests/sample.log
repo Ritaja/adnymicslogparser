@@ -1,0 +1,7 @@
+2015-09-17 11:00:09,621 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'1', u'productId': [u'123456789001', u'123456789002', u'123456789003']}
+2015-09-17 11:00:09,623 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'2', u'productId': [u'123456789004', u'123456789005', u'123456789006']}
+2015-09-17 11:00:09,625 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'3', u'productId': [u'123456789007', u'123456789008', u'123456789009']}
+2015-09-17 11:00:09,626 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'4', u'productId': u'123456789001'}
+2015-09-17 11:00:09,627 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'5', u'productId': [u'123456789001', u'123456789002', u'123456789003']}
+2015-09-17 11:00:09,628 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'6', u'productId': u'123456789005'}
+2015-09-17 11:00:09,628 - adnymics.BrochureGeneration.JobGenerator - DEBUG: Checkingargs for (re-)generating brochure: {u'orderId': u'7', u'productId': u'123456789010'}
