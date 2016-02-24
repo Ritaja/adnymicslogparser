@@ -1,6 +1,6 @@
-# ADNYMICS LOG PARSER
+# PSQL LOG PARSER
 
-log parser to parse logs and enter data points in postgre SQL.
+log parser to parse logs and enter data points in postgreSQL.
 
 ### Version
 0.0.1
